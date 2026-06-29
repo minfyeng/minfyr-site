@@ -86,7 +86,7 @@
   <!-- STAT STRIP -->
   <div class="stats">
     <div class="container stats__inner">
-      <span class="stat reveal">≥ 90% test coverage from day one</span>
+      <span class="stat reveal">≥ 90% coverage + Playwright E2E</span>
       <span class="stat__dot reveal reveal-d1">·</span>
       <span class="stat reveal reveal-d1">Jira + Confluence in sync</span>
       <span class="stat__dot reveal reveal-d2">·</span>
@@ -233,7 +233,7 @@
           <article class="card reveal">
             <div class="card__top"><code>/minfyr:implement-feature</code><span class="card__badge badge--build">BUILD</span></div>
             <h3>Build</h3>
-            <p>First run auto-scaffolds FE, BE, infra and design repos (design tokens, locked contract, dual-CI and cloud deploy baked in). Then implements each feature slice with TDD on a Jira-keyed branch and opens a PR for human review.</p>
+            <p>First run auto-scaffolds FE, BE, infra and design repos (design tokens, locked contract, dual-CI and cloud deploy baked in). Then implements each feature slice with TDD — unit, integration and Playwright E2E — on a Jira-keyed branch and opens a PR for review.</p>
           </article>
           <article class="card reveal reveal-d2">
             <div class="card__top"><code>/minfyr:pr-review</code><span class="card__badge badge--build">REVIEW</span></div>
@@ -339,7 +339,7 @@
         <div class="feature reveal reveal-d2">
           <div class="feature__icon">📦</div>
           <h3>Feature-sliced delivery</h3>
-          <p>The backlog is topologically sorted. Engineers ship one slice at a time with TDD and an independent 9-category code review.</p>
+          <p>The backlog is topologically sorted. Engineers ship one slice at a time with TDD, cross-browser + mobile Playwright E2E, and an independent 9-category code review.</p>
         </div>
         <div class="feature reveal">
           <div class="feature__icon">🤖</div>
