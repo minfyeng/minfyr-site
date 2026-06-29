@@ -241,11 +241,16 @@
             <p>Runs the independent 9-category code reviewer on the PR — comment-only, never approves. Humans always merge.</p>
           </article>
           <article class="card reveal reveal-d3">
+            <div class="card__top"><code>/minfyr:pr-updates</code><span class="card__badge badge--build">MERGE</span></div>
+            <h3>PR triage</h3>
+            <p>Dashboard of your open PRs by review state — prompts merge for approved ones (Jira → Done) and walks unresolved comments PR-by-PR.</p>
+          </article>
+          <article class="card reveal">
             <div class="card__top"><code>/minfyr:cost-estimator</code><span class="card__badge badge--report">REPORT</span></div>
             <h3>Cost estimate</h3>
             <p>Projects AWS cost from architecture.md or a pasted brief — no AWS credentials required to estimate before committing.</p>
           </article>
-          <article class="card reveal">
+          <article class="card reveal reveal-d1">
             <div class="card__top"><code>/minfyr:security-scanner</code><span class="card__badge badge--report">REPORT</span></div>
             <h3>Security scan</h3>
             <p>OWASP ASVS-L2 + AWS Well-Architected posture review before handover. Confirms CI gates are green. LLM Top 10 when AI surface is present.</p>
@@ -253,7 +258,52 @@
         </div>
       </div>
 
-      <!-- Group 2: Lean prototype -->
+      <!-- Group 2: Release & promote -->
+      <div class="cards__group reveal">
+        <div class="cards__group-header">
+          <span class="cards__group-label">Release &amp; promote</span>
+          <span class="cards__group-sub">Gated promotion through environments — dev → staging → prod, with NFR and change-freeze checks.</span>
+        </div>
+        <div class="cards">
+          <article class="card reveal">
+            <div class="card__top"><code>/minfyr:load-test-runner</code><span class="card__badge badge--release">RELEASE</span></div>
+            <h3>Load test</h3>
+            <p>Authors and runs k6 load tests against staging — reports p95 latency, error rate and throughput against the tech-spec NFR thresholds.</p>
+          </article>
+          <article class="card reveal reveal-d1">
+            <div class="card__top"><code>/minfyr:infra-promote-staging</code><span class="card__badge badge--release">RELEASE</span></div>
+            <h3>Promote to staging</h3>
+            <p>Promotes infra dev → staging behind smoke + contract gates before <code>terraform apply</code>. Refuses on a stale dev deploy or contract drift.</p>
+          </article>
+          <article class="card reveal reveal-d2">
+            <div class="card__top"><code>/minfyr:infra-promote-prod</code><span class="card__badge badge--release">RELEASE</span></div>
+            <h3>Promote to prod</h3>
+            <p>Promotes staging → prod with all staging gates plus fresh-NFR sanity, a change-freeze check and a two-step typed confirmation. Audit trail to Jira + Confluence.</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- Group 3: Change management -->
+      <div class="cards__group reveal">
+        <div class="cards__group-header">
+          <span class="cards__group-label">Change management</span>
+          <span class="cards__group-sub">Evolve a sealed backlog safely — re-lock contracts and audit drift between specs and code.</span>
+        </div>
+        <div class="cards">
+          <article class="card reveal">
+            <div class="card__top"><code>/minfyr:add-new-feature</code><span class="card__badge badge--change">CHANGE</span></div>
+            <h3>Add a feature</h3>
+            <p>Adds a feature after the backlog is sealed. UX changes trigger re-approval and contract re-lock; backend-only changes update the contract + tech-spec and emit new slices.</p>
+          </article>
+          <article class="card reveal reveal-d1">
+            <div class="card__top"><code>/minfyr:audit-code-vs-design</code><span class="card__badge badge--change">CHANGE</span></div>
+            <h3>Drift audit</h3>
+            <p>Consistency audit — drift across product-spec, architecture, tech-spec, contract and tickets, or between the actual code and the design specs.</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- Group 4: Lean prototype -->
       <div class="cards__group cards__group--teal reveal">
         <div class="cards__group-header">
           <span class="cards__group-label">Lean prototyping</span>
