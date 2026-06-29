@@ -418,30 +418,30 @@ code { font-family:var(--mono); font-size:0.82em; }
 .cmd-list { display:flex; flex-direction:column; }
 .cmd-row {
   display:grid;
-  grid-template-columns:auto 1fr auto;
-  align-items:center; gap:.85rem;
-  padding:.7rem 1.5rem;
+  grid-template-columns:1fr auto;
+  grid-template-areas:
+    "code badge"
+    "text text";
+  align-items:center;
+  gap:.4rem .6rem;
+  padding:.8rem 1.25rem;
   border-top:1px solid var(--border-2);
   transition:background .2s;
 }
 .cmd-row:first-child { border-top:none; }
 .cmd-row:hover { background:var(--bg-2); }
 .cmd-row code {
+  grid-area:code; justify-self:start; max-width:100%;
   color:var(--v1); font-size:.72rem;
   background:rgba(124,92,252,.1); padding:.2rem .5rem; border-radius:5px;
-  white-space:nowrap;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
-.cmd-row__text { font-size:.8rem; color:var(--text-2); line-height:1.45; min-width:0; }
+.cmd-row__text { grid-area:text; font-size:.8rem; color:var(--text-2); line-height:1.5; }
 .cmd-row__text strong { color:var(--text-1); font-weight:700; }
-.cmd-row .card__badge { align-self:center; }
+.cmd-row .card__badge { grid-area:badge; justify-self:end; }
 
 @media (max-width:860px) {
-  .cards__split { grid-template-columns:1fr; gap:1.75rem; }
-}
-@media (max-width:560px) {
-  .cmd-row { grid-template-columns:1fr; row-gap:.45rem; justify-items:start; }
-  .cmd-row code { max-width:100%; overflow:hidden; text-overflow:ellipsis; }
-  .cmd-row .card__badge { justify-self:start; }
+  .cards__split { grid-template-columns:1fr; gap:1.5rem; }
 }
 
 /* ─── Why / Features ─────────────────────────────────────────────────── */
