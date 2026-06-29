@@ -333,7 +333,7 @@ code { font-family:var(--mono); font-size:0.82em; }
 .stages .section__lead  { margin-bottom:3rem; }
 
 .cards__group {
-  margin-bottom:3rem;
+  margin-bottom:1.75rem;
   border:1px solid var(--border-2);
   border-radius:var(--radius-lg); overflow:hidden;
 }
@@ -354,18 +354,20 @@ code { font-family:var(--mono); font-size:0.82em; }
 
 .cards {
   display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(270px,1fr));
-  gap:1px; background:var(--border-2);
-  padding:1px;
+  grid-template-columns:repeat(auto-fill, minmax(258px,1fr));
+  gap:12px;
+  padding:14px;
 }
 .card {
-  background:var(--bg);
-  padding:1.4rem 1.4rem 1.6rem;
-  display:flex; flex-direction:column; gap:.6rem;
+  background:var(--bg-2);
+  border:1px solid var(--border-2);
+  border-radius:12px;
+  padding:1.1rem 1.2rem 1.25rem;
+  display:flex; flex-direction:column; gap:.45rem;
   position:relative; overflow:hidden;
-  transition:background .2s;
+  transition:background .2s, border-color .2s, box-shadow .2s;
 }
-.card:hover { background:var(--bg-2); }
+.card:hover { background:var(--bg-3); border-color:var(--border); box-shadow:var(--shadow-glow); }
 .card::before {
   content:''; position:absolute; inset:0;
   background:linear-gradient(135deg, rgba(124,92,252,.05), transparent);
