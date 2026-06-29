@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>minfyr — Brief in. Production out.</title>
-  <meta name="description" content="minfyr is a Claude Code plugin that runs the whole delivery — spec, UX, backlog, scaffold, and build. Every stage gated. Nothing drifts." />
+  <meta name="description" content="minfyr is a Claude Code plugin that runs the whole delivery — spec, UX, backlog, and build. Every stage gated. Nothing drifts." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -56,7 +56,7 @@
       <div class="hero__content">
         <h1 class="reveal">Brief in.<br /><span class="accent">Production out.</span></h1>
         <p class="hero__tag reveal reveal-d1">Every stage gated. Nothing drifts.</p>
-        <p class="hero__sub reveal reveal-d2">minfyr takes a customer brief all the way to deployed code — spec, UX, backlog, scaffold, and build — each stage gating the next so nothing drifts.</p>
+        <p class="hero__sub reveal reveal-d2">minfyr takes a customer brief all the way to deployed code — spec, UX, backlog, and build — each stage gating the next so nothing drifts.</p>
         <div class="hero__cta reveal reveal-d3">
           <a class="btn btn--dark btn--lg" href="https://claude.ai/code" target="_blank" rel="noopener">Open in Claude</a>
           <a class="btn btn--ghost btn--lg" href="https://sh-e8e1ef30d8d94896b8db349450efdb0c.ecs.us-east-1.on.aws/login">Sign in</a>
@@ -137,17 +137,10 @@
           <div class="flow__tip"><code>/minfyr:ticket-generator</code></div>
         </div>
         <div class="flow__connector reveal reveal-d5"></div>
-        <div class="flow__step reveal reveal-d5" data-tip="auto">
+        <div class="flow__step reveal reveal-d5" data-tip="/minfyr:implement-feature">
           <div class="flow__badge">06</div>
-          <strong>Scaffold</strong>
-          <span>FE / BE / infra repos — auto from plan</span>
-          <div class="flow__tip">Auto from <code>/minfyr:plan</code></div>
-        </div>
-        <div class="flow__connector reveal"></div>
-        <div class="flow__step reveal" data-tip="/minfyr:implement-feature">
-          <div class="flow__badge">07</div>
           <strong>Build</strong>
-          <span>TDD feature slices → independent PR review</span>
+          <span>Auto-scaffold → TDD feature slices → independent PR review</span>
           <div class="flow__tip"><code>/minfyr:implement-feature</code></div>
         </div>
       </div>
