@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>minfyr — Brief in. Production out.</title>
+  <meta name="description" content="minfyr is a Claude Code plugin that runs the whole delivery — spec, UX, backlog, scaffold, and build. Every stage gated. Nothing drifts." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="top">
+    <div class="container nav__inner">
+      <a class="brand" href="#top"><span class="brand__mark">/</span>minfyr</a>
+      <nav class="nav__links" id="navLinks">
+        <a href="#pipeline">Pipeline</a>
+        <a href="#stages">Commands</a>
+        <a href="#why">Why minfyr</a>
+        <a href="#start">Get started</a>
+      </nav>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+          <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+        <a class="link-quiet" href="https://sh-e8e1ef30d8d94896b8db349450efdb0c.ecs.us-east-1.on.aws/login">Sign in</a>
+        <a class="btn btn--dark" href="https://claude.ai/code" target="_blank" rel="noopener">Open in Claude</a>
+        <button class="nav__hamburger" id="navToggle" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE NAV -->
+  <div class="nav__mobile" id="navMobile">
+    <nav>
+      <a href="#pipeline" class="nav__mobile-link">Pipeline</a>
+      <a href="#stages" class="nav__mobile-link">Commands</a>
+      <a href="#why" class="nav__mobile-link">Why minfyr</a>
+      <a href="#start" class="nav__mobile-link">Get started</a>
+    </nav>
+    <div class="nav__mobile-actions">
+      <a class="btn btn--ghost btn--lg" href="https://sh-e8e1ef30d8d94896b8db349450efdb0c.ecs.us-east-1.on.aws/login">Sign in</a>
+      <a class="btn btn--dark btn--lg" href="https://claude.ai/code" target="_blank" rel="noopener">Open in Claude</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <h1 class="reveal">Brief in.<br /><span class="accent">Production out.</span></h1>
+        <p class="hero__tag reveal reveal-d1">Every stage gated. Nothing drifts.</p>
+        <p class="hero__sub reveal reveal-d2">minfyr takes a customer brief all the way to deployed code — spec, UX, backlog, scaffold, and build — each stage gating the next so nothing drifts.</p>
+        <div class="hero__cta reveal reveal-d3">
+          <a class="btn btn--dark btn--lg" href="https://claude.ai/code" target="_blank" rel="noopener">Open in Claude</a>
+          <a class="btn btn--ghost btn--lg" href="https://sh-e8e1ef30d8d94896b8db349450efdb0c.ecs.us-east-1.on.aws/login">Sign in</a>
+        </div>
+        <p class="hero__free reveal reveal-d4">Free to install &nbsp;·&nbsp; Requires Claude Code</p>
+      </div>
+      <div class="hero__visual reveal reveal-d2">
+        <div class="terminal">
+          <div class="terminal__bar">
+            <span class="dot dot--r"></span>
+            <span class="dot dot--y"></span>
+            <span class="dot dot--g"></span>
+            <span class="terminal__title">claude — /minfyr</span>
+          </div>
+          <div class="terminal__body">
+            <div class="terminal__prompt-row">
+              <span class="t-dim">❯</span>
+              <span id="termCmd" class="t-cmd"></span><span class="t-cursor" id="termCursor">█</span>
+            </div>
+            <div id="termOutput" class="terminal__output"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAT STRIP -->
+  <div class="stats">
+    <div class="container stats__inner">
+      <span class="stat reveal">≥ 90% test coverage from day one</span>
+      <span class="stat__dot reveal reveal-d1">·</span>
+      <span class="stat reveal reveal-d1">Jira + Confluence in sync</span>
+      <span class="stat__dot reveal reveal-d2">·</span>
+      <span class="stat reveal reveal-d2">AWS + Terraform with OIDC baked in</span>
+      <span class="stat__dot reveal reveal-d3">·</span>
+      <span class="stat reveal reveal-d3">Two delivery flows: customer &amp; prototype</span>
+    </div>
+  </div>
+
+  <!-- PIPELINE -->
+  <section class="pipeline" id="pipeline">
+    <div class="container">
+      <h2 class="section__title reveal">One pipeline. Seven gates.</h2>
+      <p class="section__lead reveal reveal-d1">Run commands in order — each stage locks the prior, eliminating rework from changing requirements.</p>
+      <div class="flow">
+        <div class="flow__step reveal" data-tip="/minfyr:plan">
+          <div class="flow__badge">01</div>
+          <strong>Brief / SOW</strong>
+          <span>A few sentences or a full statement of work</span>
+          <div class="flow__tip"><code>/minfyr:plan</code></div>
+        </div>
+        <div class="flow__connector reveal reveal-d1"></div>
+        <div class="flow__step reveal reveal-d1" data-tip="/minfyr:plan">
+          <div class="flow__badge">02</div>
+          <strong>Product spec</strong>
+          <span>Discovery interview → signed spec + architecture</span>
+          <div class="flow__tip"><code>/minfyr:plan</code></div>
+        </div>
+        <div class="flow__connector reveal reveal-d2"></div>
+        <div class="flow__step reveal reveal-d2" data-tip="/minfyr:ux-builder">
+          <div class="flow__badge">03</div>
+          <strong>UX design</strong>
+          <span>FE shapes: wireframes → mockups → contract lock</span>
+          <div class="flow__tip"><code>/minfyr:ux-builder</code></div>
+        </div>
+        <div class="flow__connector reveal reveal-d3"></div>
+        <div class="flow__step reveal reveal-d3" data-tip="/minfyr:tech-spec-writer">
+          <div class="flow__badge">04</div>
+          <strong>Tech spec</strong>
+          <span>DB, API contract, per-env AWS infra, NFRs</span>
+          <div class="flow__tip"><code>/minfyr:tech-spec-writer</code></div>
+        </div>
+        <div class="flow__connector reveal reveal-d4"></div>
+        <div class="flow__step reveal reveal-d4" data-tip="/minfyr:ticket-generator">
+          <div class="flow__badge">05</div>
+          <strong>Backlog</strong>
+          <span>Topo-sorted tickets → Jira sprints</span>
+          <div class="flow__tip"><code>/minfyr:ticket-generator</code></div>
+        </div>
+        <div class="flow__connector reveal reveal-d5"></div>
+        <div class="flow__step reveal reveal-d5" data-tip="auto">
+          <div class="flow__badge">06</div>
+          <strong>Scaffold</strong>
+          <span>FE / BE / infra repos — auto from plan</span>
+          <div class="flow__tip">Auto from <code>/minfyr:plan</code></div>
+        </div>
+        <div class="flow__connector reveal"></div>
+        <div class="flow__step reveal" data-tip="/minfyr:implement-feature">
+          <div class="flow__badge">07</div>
+          <strong>Build</strong>
+          <span>TDD feature slices → independent PR review</span>
+          <div class="flow__tip"><code>/minfyr:implement-feature</code></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARE -->
+  <section class="compare">
+    <div class="container">
+      <h2 class="section__title reveal">More than a coding assistant</h2>
+      <p class="section__lead reveal reveal-d1">An assistant helps you write code. minfyr runs the whole delivery.</p>
+      <div class="compare__grid">
+        <div class="compare__col compare__col--muted reveal">
+          <h3>Without minfyr</h3>
+          <ul>
+            <li><span class="compare__icon compare__icon--no">✕</span>Answers prompts, file by file</li>
+            <li><span class="compare__icon compare__icon--no">✕</span>No record of decisions</li>
+            <li><span class="compare__icon compare__icon--no">✕</span>Specs, designs &amp; code drift apart</li>
+            <li><span class="compare__icon compare__icon--no">✕</span>You wire up CI, infra &amp; tests</li>
+            <li><span class="compare__icon compare__icon--no">✕</span>Backlog lives in your head</li>
+          </ul>
+        </div>
+        <div class="compare__col compare__col--bright reveal reveal-d1">
+          <h3>With minfyr</h3>
+          <ul>
+            <li><span class="compare__icon compare__icon--yes">✓</span>Brief → production, gated end to end</li>
+            <li><span class="compare__icon compare__icon--yes">✓</span>Every stage signed &amp; published to Confluence</li>
+            <li><span class="compare__icon compare__icon--yes">✓</span>Design locked into one OpenAPI contract</li>
+            <li><span class="compare__icon compare__icon--yes">✓</span>Scaffolds ship with CI/CD, OIDC &amp; ≥90% coverage</li>
+            <li><span class="compare__icon compare__icon--yes">✓</span>Topo-sorted backlog pushed to Jira sprints</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMANDS -->
+  <section class="stages" id="stages">
+    <div class="container">
+      <h2 class="section__title reveal">The commands that run the factory</h2>
+      <p class="section__lead reveal reveal-d1">Each stage is one slash command. Most auto-chain into the next.</p>
+
+      <!-- Group 1: Customer pipeline -->
+      <div class="cards__group reveal">
+        <div class="cards__group-header">
+          <span class="cards__group-label">Customer delivery pipeline</span>
+          <span class="cards__group-sub">Brief to production · Jira + Confluence · UX sign-off · multi-env AWS infra</span>
+        </div>
+        <div class="cards">
+          <article class="card reveal">
+            <div class="card__top"><code>/minfyr:plan</code><span class="card__badge badge--plan">PLAN</span></div>
+            <h3>Plan</h3>
+            <p>Drives the full pipeline from a SOW or brief — auto-chains UX, stack, tech-spec and tickets. Output: signed backlog ready to build.</p>
+          </article>
+          <article class="card reveal reveal-d1">
+            <div class="card__top"><code>/minfyr:ux-builder</code><span class="card__badge badge--ux">UX</span></div>
+            <h3>UX design</h3>
+            <p>Builds UX from scratch — positioning brief → theme → wireframes → component contracts → HTML mockups deployed for customer review.</p>
+          </article>
+          <article class="card reveal reveal-d2">
+            <div class="card__top"><code>/minfyr:ux-approve</code><span class="card__badge badge--ux">UX</span></div>
+            <h3>UX sign-off</h3>
+            <p>Captures customer UX approval, hash-seals the API contract, and auto-chains to stack-picker → tech-spec → ticket generation.</p>
+          </article>
+          <article class="card reveal reveal-d3">
+            <div class="card__top"><code>/minfyr:stack-picker</code><span class="card__badge badge--stack">STACK</span></div>
+            <h3>Stack</h3>
+            <p>Picks framework, DB, auth, compute, IaC, repo layout and AI provider. Re-run with <code>--reopen</code> to revise a single decision.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card__top"><code>/minfyr:tech-spec-writer</code><span class="card__badge badge--spec">SPEC</span></div>
+            <h3>Tech spec</h3>
+            <p>Writes DB models, API contract, per-env AWS infra, VPC, NFRs and the security model. Auto-chains to ticket generation.</p>
+          </article>
+          <article class="card reveal reveal-d1">
+            <div class="card__top"><code>/minfyr:ticket-generator</code><span class="card__badge badge--backlog">BACKLOG</span></div>
+            <h3>Backlog</h3>
+            <p>Generates the topologically-sorted backlog with a dependency graph and per-feature slice caches from the product and tech specs.</p>
+          </article>
+          <article class="card reveal reveal-d2">
+            <div class="card__top"><code>/minfyr:sprint-plan</code><span class="card__badge badge--backlog">SPRINT</span></div>
+            <h3>Sprint plan</h3>
+            <p>Buckets the sorted backlog into 2-week sprints between a start and end date, reserving final test and deploy weeks.</p>
+          </article>
+          <article class="card reveal reveal-d3">
+            <div class="card__top"><code>/minfyr:tasks-to-tracker</code><span class="card__badge badge--backlog">JIRA</span></div>
+            <h3>Jira push</h3>
+            <p>Pushes the backlog to Jira — creates Epics, stories and tasks. Idempotent: re-runs update existing issues without duplicating.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card__top"><span class="card__auto">auto-scaffolds</span><span class="card__badge badge--auto">AUTO</span></div>
+            <h3>Scaffold</h3>
+            <p>Bootstraps FE, BE, infra and design repos automatically from <code>/minfyr:plan</code> — design tokens, locked contract, dual-CI and cloud deploy baked in.</p>
+          </article>
+          <article class="card reveal reveal-d1">
+            <div class="card__top"><code>/minfyr:implement-feature</code><span class="card__badge badge--build">BUILD</span></div>
+            <h3>Build</h3>
+            <p>Implements one feature slice with TDD on a Jira-keyed branch and opens a PR for human review. No argument grabs the next assigned ticket.</p>
+          </article>
+          <article class="card reveal reveal-d2">
+            <div class="card__top"><code>/minfyr:pr-review</code><span class="card__badge badge--build">REVIEW</span></div>
+            <h3>PR review</h3>
+            <p>Runs the independent 9-category code reviewer on the PR — comment-only, never approves. Humans always merge.</p>
+          </article>
+          <article class="card reveal reveal-d3">
+            <div class="card__top"><code>/minfyr:cost-estimator</code><span class="card__badge badge--report">REPORT</span></div>
+            <h3>Cost estimate</h3>
+            <p>Projects AWS cost from architecture.md or a pasted brief — no AWS credentials required to estimate before committing.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card__top"><code>/minfyr:security-scanner</code><span class="card__badge badge--report">REPORT</span></div>
+            <h3>Security scan</h3>
+            <p>OWASP ASVS-L2 + AWS Well-Architected posture review before handover. Confirms CI gates are green. LLM Top 10 when AI surface is present.</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- Group 2: Lean prototype -->
+      <div class="cards__group cards__group--teal reveal">
+        <div class="cards__group-header">
+          <span class="cards__group-label">Lean prototyping</span>
+          <span class="cards__group-sub">Internal tools &amp; prototypes — one doc, scaffold, ship. No Jira, no Confluence, no ceremony.</span>
+        </div>
+        <div class="cards">
+          <article class="card card--teal reveal">
+            <div class="card__top"><code>/minfyr:internal-app</code><span class="card__badge badge--lean">LEAN</span></div>
+            <h3>Internal app</h3>
+            <p>Brief → one build-spec doc → scaffold + co-located single-env Terraform deploy. Frontend-only, full-stack, or backend (incl. AI). Graduate to the full pipeline any time.</p>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="why" id="why">
+    <div class="container">
+      <h2 class="section__title reveal">Why teams choose minfyr</h2>
+      <div class="features">
+        <div class="feature reveal">
+          <div class="feature__icon">🔒</div>
+          <h3>Design-as-contract</h3>
+          <p>UX is locked into an OpenAPI contract code-generated for frontend and backend simultaneously — no API mismatch, ever.</p>
+        </div>
+        <div class="feature reveal reveal-d1">
+          <div class="feature__icon">🚀</div>
+          <h3>Production-ready scaffolds</h3>
+          <p>Every repo ships with CI/CD, OIDC to AWS (no long-lived keys), observability and ≥90% test coverage from day one.</p>
+        </div>
+        <div class="feature reveal reveal-d2">
+          <div class="feature__icon">📦</div>
+          <h3>Feature-sliced delivery</h3>
+          <p>The backlog is topologically sorted. Engineers ship one slice at a time with TDD and an independent 9-category code review.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="feature__icon">🤖</div>
+          <h3>AI-aware</h3>
+          <p>When the architecture names LLM, agent or RAG components, minfyr generates prompt registries, agent inventories and eval suites automatically.</p>
+        </div>
+        <div class="feature reveal reveal-d1">
+          <div class="feature__icon">🔗</div>
+          <h3>Jira + Confluence in sync</h3>
+          <p>The backlog lives in Jira; specs, architecture and sign-offs live in Confluence — two-way sync keeps them aligned throughout delivery.</p>
+        </div>
+        <div class="feature reveal reveal-d2">
+          <div class="feature__icon">📊</div>
+          <h3>Two delivery flows</h3>
+          <p>Full customer pipeline (<code>/minfyr:plan</code>) or lean prototype (<code>/minfyr:internal-app</code>). Graduate a prototype to the full flow any time — nothing is thrown away.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO START -->
+  <section class="howto" id="start">
+    <div class="container">
+      <h2 class="section__title reveal">Get started in minutes</h2>
+      <p class="section__lead reveal reveal-d1">Everything you need to go from brief to production on Claude Code.</p>
+      <div class="howto__steps">
+        <div class="howto__step reveal">
+          <div class="howto__num">1</div>
+          <h3>Open Claude Code</h3>
+          <p>Available in the Claude desktop app, CLI, VS Code, and JetBrains — wherever you work.</p>
+        </div>
+        <div class="howto__arrow reveal reveal-d1">→</div>
+        <div class="howto__step reveal reveal-d1">
+          <div class="howto__num">2</div>
+          <h3>Install the plugin</h3>
+          <p>Install from the minfyr marketplace — free. No AWS credentials, no Jira tokens needed until you're ready to push.</p>
+        </div>
+        <div class="howto__arrow reveal reveal-d2">→</div>
+        <div class="howto__step reveal reveal-d2">
+          <div class="howto__num">3</div>
+          <h3>Run your first command</h3>
+          <p>Drop in a brief and let minfyr do the rest.</p>
+          <div class="howto__cmd">
+            <code>/minfyr:plan your-brief.md</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta">
+    <div class="container cta__inner">
+      <h2 class="reveal">Ship the whole engagement.</h2>
+      <p class="reveal reveal-d1">Open minfyr in Claude and run <code>/minfyr:plan</code> with your brief.</p>
+      <div class="hero__cta reveal reveal-d2">
+        <a class="btn btn--dark btn--lg" href="https://claude.ai/code" target="_blank" rel="noopener">Open in Claude</a>
+        <a class="btn btn--ghost btn--lg" href="https://sh-e8e1ef30d8d94896b8db349450efdb0c.ecs.us-east-1.on.aws/login">Sign in</a>
+      </div>
+      <p class="hero__free reveal reveal-d3">Free to install &nbsp;·&nbsp; Requires Claude Code</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="brand"><span class="brand__mark">/</span>minfyr</span>
+        <p>The spec-to-production delivery pipeline for Claude Code.</p>
+      </div>
+      <div class="footer__links">
+        <a href="#pipeline">Pipeline</a>
+        <a href="#stages">Commands</a>
+        <a href="#why">Why minfyr</a>
+        <a href="#start">Get started</a>
+        <a href="https://sh-e8e1ef30d8d94896b8db349450efdb0c.ecs.us-east-1.on.aws/login">Sign in</a>
+        <a href="https://minfytech.com" target="_blank" rel="noopener">minfytech.com</a>
+      </div>
+    </div>
+    <div class="container footer__legal">
+      <span>© <span id="year"></span> Minfy · Built for Claude Code</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
