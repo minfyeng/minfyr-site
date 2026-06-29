@@ -238,14 +238,9 @@
             <p>Pushes the backlog to Jira — creates Epics, stories and tasks. Idempotent: re-runs update existing issues without duplicating.</p>
           </article>
           <article class="card reveal">
-            <div class="card__top"><span class="card__auto">auto-scaffolds</span><span class="card__badge badge--auto">AUTO</span></div>
-            <h3>Scaffold</h3>
-            <p>Bootstraps FE, BE, infra and design repos automatically from <code>/minfyr:plan</code> — design tokens, locked contract, dual-CI and cloud deploy baked in.</p>
-          </article>
-          <article class="card reveal reveal-d1">
             <div class="card__top"><code>/minfyr:implement-feature</code><span class="card__badge badge--build">BUILD</span></div>
             <h3>Build</h3>
-            <p>Implements one feature slice with TDD on a Jira-keyed branch and opens a PR for human review. No argument grabs the next assigned ticket.</p>
+            <p>First run auto-scaffolds FE, BE, infra and design repos (design tokens, locked contract, dual-CI and cloud deploy baked in). Then implements each feature slice with TDD on a Jira-keyed branch and opens a PR for human review.</p>
           </article>
           <article class="card reveal reveal-d2">
             <div class="card__top"><code>/minfyr:pr-review</code><span class="card__badge badge--build">REVIEW</span></div>
