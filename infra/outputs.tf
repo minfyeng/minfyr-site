@@ -12,3 +12,8 @@ output "s3_bucket" {
   description = "S3 bucket name for deploy CI sync"
   value       = aws_s3_bucket.site.bucket
 }
+
+output "deploy_role_arn" {
+  description = "IAM role ARN for the GitHub Actions deploy (set as AWS_DEPLOY_ROLE_ARN secret)"
+  value       = aws_iam_role.deploy.arn
+}
