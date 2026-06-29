@@ -193,113 +193,114 @@
           <article class="card reveal">
             <div class="card__top"><code>/minfyr:plan</code><span class="card__badge badge--plan">PLAN</span></div>
             <h3>Plan</h3>
-            <p>Drives the full pipeline from a SOW or brief — auto-chains UX, stack, tech-spec and tickets. Output: signed backlog ready to build.</p>
+            <p>Drives the whole pipeline from a SOW — auto-chains UX, stack, tech-spec and tickets.</p>
           </article>
           <article class="card reveal reveal-d1">
             <div class="card__top"><code>/minfyr:ux-builder</code><span class="card__badge badge--ux">UX</span></div>
             <h3>UX design</h3>
-            <p>Builds UX from scratch — positioning brief → theme → wireframes → component contracts → HTML mockups deployed for customer review.</p>
+            <p>Theme → wireframes → component contracts → HTML mockups, deployed for customer review.</p>
           </article>
           <article class="card reveal reveal-d2">
             <div class="card__top"><code>/minfyr:ux-approve</code><span class="card__badge badge--ux">UX</span></div>
             <h3>UX sign-off</h3>
-            <p>Captures customer UX approval, hash-seals the API contract, and auto-chains to stack-picker → tech-spec → ticket generation.</p>
+            <p>Captures customer approval, hash-seals the API contract, chains to tech-spec.</p>
           </article>
           <article class="card reveal reveal-d3">
             <div class="card__top"><code>/minfyr:stack-picker</code><span class="card__badge badge--stack">STACK</span></div>
             <h3>Stack</h3>
-            <p>Picks framework, DB, auth, compute, IaC, repo layout and AI provider. Re-run with <code>--reopen</code> to revise a single decision.</p>
+            <p>Picks framework, DB, auth, compute, IaC and AI provider — revisable per axis.</p>
           </article>
           <article class="card reveal">
             <div class="card__top"><code>/minfyr:tech-spec-writer</code><span class="card__badge badge--spec">SPEC</span></div>
             <h3>Tech spec</h3>
-            <p>Writes DB models, API contract, per-env AWS infra, VPC, NFRs and the security model. Auto-chains to ticket generation.</p>
+            <p>DB models, API contract, per-env AWS infra, NFRs and the security model.</p>
           </article>
           <article class="card reveal reveal-d1">
             <div class="card__top"><code>/minfyr:ticket-generator</code><span class="card__badge badge--backlog">BACKLOG</span></div>
             <h3>Backlog</h3>
-            <p>Generates the topologically-sorted backlog with a dependency graph and per-feature slice caches from the product and tech specs.</p>
+            <p>Topologically-sorted backlog with a dependency graph and per-feature slice caches.</p>
           </article>
           <article class="card reveal reveal-d2">
             <div class="card__top"><code>/minfyr:sprint-plan</code><span class="card__badge badge--backlog">SPRINT</span></div>
             <h3>Sprint plan</h3>
-            <p>Buckets the sorted backlog into 2-week sprints between a start and end date, reserving final test and deploy weeks.</p>
+            <p>Buckets the backlog into 2-week sprints, reserving test + deploy weeks.</p>
           </article>
           <article class="card reveal reveal-d3">
             <div class="card__top"><code>/minfyr:tasks-to-tracker</code><span class="card__badge badge--backlog">JIRA</span></div>
             <h3>Jira push</h3>
-            <p>Pushes the backlog to Jira — creates Epics, stories and tasks. Idempotent: re-runs update existing issues without duplicating.</p>
+            <p>Creates Epics, stories and tasks in Jira. Idempotent re-runs, no duplicates.</p>
           </article>
           <article class="card reveal">
             <div class="card__top"><code>/minfyr:implement-feature</code><span class="card__badge badge--build">BUILD</span></div>
             <h3>Build</h3>
-            <p>First run auto-scaffolds FE, BE, infra and design repos (design tokens, locked contract, dual-CI and cloud deploy baked in). Then implements each feature slice with TDD — unit, integration and Playwright E2E — on a Jira-keyed branch and opens a PR for review.</p>
+            <p>Auto-scaffolds the repos, then builds each slice with TDD + Playwright E2E into a PR.</p>
           </article>
           <article class="card reveal reveal-d2">
             <div class="card__top"><code>/minfyr:pr-review</code><span class="card__badge badge--build">REVIEW</span></div>
             <h3>PR review</h3>
-            <p>Runs the independent 9-category code reviewer on the PR — comment-only, never approves. Humans always merge.</p>
+            <p>Independent 9-category reviewer — comment-only. Humans always merge.</p>
           </article>
           <article class="card reveal reveal-d3">
             <div class="card__top"><code>/minfyr:pr-updates</code><span class="card__badge badge--build">MERGE</span></div>
             <h3>PR triage</h3>
-            <p>Dashboard of your open PRs by review state — prompts merge for approved ones (Jira → Done) and walks unresolved comments PR-by-PR.</p>
+            <p>Open-PR dashboard — merges approved ones, walks unresolved comments.</p>
           </article>
           <article class="card reveal">
             <div class="card__top"><code>/minfyr:cost-estimator</code><span class="card__badge badge--report">REPORT</span></div>
             <h3>Cost estimate</h3>
-            <p>Projects AWS cost from architecture.md or a pasted brief — no AWS credentials required to estimate before committing.</p>
+            <p>Projects AWS cost from architecture or a brief — no credentials needed.</p>
           </article>
           <article class="card reveal reveal-d1">
             <div class="card__top"><code>/minfyr:security-scanner</code><span class="card__badge badge--report">REPORT</span></div>
             <h3>Security scan</h3>
-            <p>OWASP ASVS-L2 + AWS Well-Architected posture review before handover. Confirms CI gates are green. LLM Top 10 when AI surface is present.</p>
+            <p>OWASP ASVS-L2 + AWS Well-Architected posture review before handover.</p>
           </article>
         </div>
       </div>
 
-      <!-- Group 2: Release & promote -->
-      <div class="cards__group reveal">
-        <div class="cards__group-header">
-          <span class="cards__group-label">Release &amp; promote</span>
-          <span class="cards__group-sub">Gated promotion through environments — dev → staging → prod, with NFR and change-freeze checks.</span>
+      <!-- Group 2 + 3: Release & Change (compact rows) -->
+      <div class="cards__split">
+        <div class="cards__group reveal">
+          <div class="cards__group-header">
+            <span class="cards__group-label">Release &amp; promote</span>
+            <span class="cards__group-sub">Gated dev → staging → prod</span>
+          </div>
+          <div class="cmd-list">
+            <div class="cmd-row">
+              <code>/minfyr:load-test-runner</code>
+              <span class="cmd-row__text"><strong>Load test</strong> — k6 vs tech-spec NFR thresholds against staging.</span>
+              <span class="card__badge badge--release">RELEASE</span>
+            </div>
+            <div class="cmd-row">
+              <code>/minfyr:infra-promote-staging</code>
+              <span class="cmd-row__text"><strong>Promote to staging</strong> — smoke + contract gates before apply.</span>
+              <span class="card__badge badge--release">RELEASE</span>
+            </div>
+            <div class="cmd-row">
+              <code>/minfyr:infra-promote-prod</code>
+              <span class="cmd-row__text"><strong>Promote to prod</strong> — NFR sanity, change-freeze, typed confirm.</span>
+              <span class="card__badge badge--release">RELEASE</span>
+            </div>
+          </div>
         </div>
-        <div class="cards">
-          <article class="card reveal">
-            <div class="card__top"><code>/minfyr:load-test-runner</code><span class="card__badge badge--release">RELEASE</span></div>
-            <h3>Load test</h3>
-            <p>Authors and runs k6 load tests against staging — reports p95 latency, error rate and throughput against the tech-spec NFR thresholds.</p>
-          </article>
-          <article class="card reveal reveal-d1">
-            <div class="card__top"><code>/minfyr:infra-promote-staging</code><span class="card__badge badge--release">RELEASE</span></div>
-            <h3>Promote to staging</h3>
-            <p>Promotes infra dev → staging behind smoke + contract gates before <code>terraform apply</code>. Refuses on a stale dev deploy or contract drift.</p>
-          </article>
-          <article class="card reveal reveal-d2">
-            <div class="card__top"><code>/minfyr:infra-promote-prod</code><span class="card__badge badge--release">RELEASE</span></div>
-            <h3>Promote to prod</h3>
-            <p>Promotes staging → prod with all staging gates plus fresh-NFR sanity, a change-freeze check and a two-step typed confirmation. Audit trail to Jira + Confluence.</p>
-          </article>
-        </div>
-      </div>
 
-      <!-- Group 3: Change management -->
-      <div class="cards__group reveal">
-        <div class="cards__group-header">
-          <span class="cards__group-label">Change management</span>
-          <span class="cards__group-sub">Evolve a sealed backlog safely — re-lock contracts and audit drift between specs and code.</span>
-        </div>
-        <div class="cards">
-          <article class="card reveal">
-            <div class="card__top"><code>/minfyr:add-new-feature</code><span class="card__badge badge--change">CHANGE</span></div>
-            <h3>Add a feature</h3>
-            <p>Adds a feature after the backlog is sealed. UX changes trigger re-approval and contract re-lock; backend-only changes update the contract + tech-spec and emit new slices.</p>
-          </article>
-          <article class="card reveal reveal-d1">
-            <div class="card__top"><code>/minfyr:audit-code-vs-design</code><span class="card__badge badge--change">CHANGE</span></div>
-            <h3>Drift audit</h3>
-            <p>Consistency audit — drift across product-spec, architecture, tech-spec, contract and tickets, or between the actual code and the design specs.</p>
-          </article>
+        <div class="cards__group reveal reveal-d1">
+          <div class="cards__group-header">
+            <span class="cards__group-label">Change management</span>
+            <span class="cards__group-sub">Evolve a sealed backlog</span>
+          </div>
+          <div class="cmd-list">
+            <div class="cmd-row">
+              <code>/minfyr:add-new-feature</code>
+              <span class="cmd-row__text"><strong>Add a feature</strong> — re-locks contract; emits new slices.</span>
+              <span class="card__badge badge--change">CHANGE</span>
+            </div>
+            <div class="cmd-row">
+              <code>/minfyr:audit-code-vs-design</code>
+              <span class="cmd-row__text"><strong>Drift audit</strong> — specs vs contract vs actual code.</span>
+              <span class="card__badge badge--change">CHANGE</span>
+            </div>
+          </div>
         </div>
       </div>
 

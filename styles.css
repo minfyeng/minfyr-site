@@ -408,8 +408,41 @@ code { font-family:var(--mono); font-size:0.82em; }
 .badge--lean    { background:rgba(14,207,207,.12);  color:var(--teal); border:1px solid rgba(14,207,207,.25); }
 
 .card h3 { font-size:.92rem; font-weight:700; }
-.card p  { font-size:.82rem; color:var(--text-2); line-height:1.6; margin:0; }
+.card p  { font-size:.82rem; color:var(--text-2); line-height:1.55; margin:0; }
 .card p code { background:var(--bg-4); padding:.1rem .35rem; border-radius:4px; color:var(--text-1); }
+
+/* ─── Compact command rows (secondary groups) ────────────────────────── */
+.cards__split { display:grid; grid-template-columns:1fr 1fr; gap:1.75rem; margin-bottom:1.75rem; }
+.cards__split .cards__group { margin-bottom:0; }
+
+.cmd-list { display:flex; flex-direction:column; }
+.cmd-row {
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center; gap:.85rem;
+  padding:.7rem 1.5rem;
+  border-top:1px solid var(--border-2);
+  transition:background .2s;
+}
+.cmd-row:first-child { border-top:none; }
+.cmd-row:hover { background:var(--bg-2); }
+.cmd-row code {
+  color:var(--v1); font-size:.72rem;
+  background:rgba(124,92,252,.1); padding:.2rem .5rem; border-radius:5px;
+  white-space:nowrap;
+}
+.cmd-row__text { font-size:.8rem; color:var(--text-2); line-height:1.45; min-width:0; }
+.cmd-row__text strong { color:var(--text-1); font-weight:700; }
+.cmd-row .card__badge { align-self:center; }
+
+@media (max-width:860px) {
+  .cards__split { grid-template-columns:1fr; gap:1.75rem; }
+}
+@media (max-width:560px) {
+  .cmd-row { grid-template-columns:1fr; row-gap:.45rem; justify-items:start; }
+  .cmd-row code { max-width:100%; overflow:hidden; text-overflow:ellipsis; }
+  .cmd-row .card__badge { justify-self:start; }
+}
 
 /* ─── Why / Features ─────────────────────────────────────────────────── */
 .why { padding:96px 0; background:var(--bg-2); }
